@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Weixin;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +32,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+        echo 'ok';
+        Weixin::test();
+		//return view('home');
 	}
 
 }
