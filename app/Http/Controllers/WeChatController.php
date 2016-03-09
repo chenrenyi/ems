@@ -21,7 +21,7 @@ class WeChatController extends Controller {
 
     public function anyServe()
     {
-        Weixin::app()->serve();
+        echo Weixin::app()->serve();
     }
 
 }

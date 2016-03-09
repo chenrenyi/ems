@@ -12,7 +12,7 @@ use Overtrue\Wechat\Server;
 class Weixin {
 
     private static $instance;
-    private static $appId = 'wxbd24ddbdbbf97af3';
+    private static $appId = 'wxcdf4bed6d3babbe8';
     private static $token = "weixin";
 
     public static function test() {
