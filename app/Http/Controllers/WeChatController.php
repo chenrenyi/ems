@@ -22,11 +22,12 @@ class WeChatController extends Controller {
     public function anyServe()
     {
         $weixin = Weixin::app();
-        echo $weixin->serve();
 
         $weixin->on('message', function($message){
-             return '这是毕设的测试账号，相关功能正在紧张开发中，敬请期待！';
+             return 'developing.... by chenrenyi';
         });
+
+        echo $weixin->serve();
     }
 
 }
