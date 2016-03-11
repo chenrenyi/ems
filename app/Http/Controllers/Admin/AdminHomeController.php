@@ -14,7 +14,7 @@ class AdminHomeController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        echo 'hello';
 	}
 
 	/**

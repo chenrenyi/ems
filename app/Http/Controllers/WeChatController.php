@@ -19,9 +19,16 @@ class WeChatController extends Controller {
         Weixin::test();
 	}
 
+    public function getSend()
+    {
+        $weixin = Weixin::sigleton();
+        $message = $weixin->makeMsg('text', 'hello everyone');
+        $weixin->send($message);
+    }
+
     public function anyServe()
     {
-        $weixin = Weixin::app();
+        $weixin = Weixin::app('serve');
 
         $weixin->on('message', function($message){
              return 'developing.... by chenrenyi';
