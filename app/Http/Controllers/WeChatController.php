@@ -16,7 +16,8 @@ class WeChatController extends Controller {
 	 */
 	public function getIndex()
 	{
-        Weixin::test();
+        $auth = Weixin::app('auth');
+        $var_dump($auth->user());
 	}
 
     public function getSend()
