@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('weixin/bindinfo', ['middleware' => 'wxauth'], 'WeChatController@getBindinfo');
 Route::controller('weixin', 'WeChatController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){

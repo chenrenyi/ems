@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Weixin;
+use Session;
 
 class HomeController extends Controller {
 
@@ -22,7 +23,8 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('wxauth');
+        $this->middleware('wxauth');
+        Session::forget('openid');
 	}
 
 	/**
@@ -32,9 +34,10 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-        $auth = Weixin::app('auth');
-        $user = $auth->authorize('http://em.chenrenyi.cn/weixin');
-        var_dump($user);
+        //$auth = Weixin::app('auth');
+        //$user = $auth->authorize('http://em.chenrenyi.cn/weixin');
+        //var_dump($user);
+        echo 'hello';
 
 		//return view('home');
 	}
