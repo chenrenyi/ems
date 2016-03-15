@@ -45,7 +45,7 @@ class WeChatController extends Controller {
                 $student->save();
             }
 
-             return Message::make('text')->content('感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
+             return Weixin::makeMsg('text', '感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
         });
 
         echo $weixin->serve();

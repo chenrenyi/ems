@@ -73,7 +73,7 @@ class Weixin {
         }
     }
 
-    public function makeMsg($type, $content) {
+    public static function makeMsg($type, $content) {
         if($type == 'text') {
             $message = Message::make('text')->content($content);
         }
