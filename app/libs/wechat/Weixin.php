@@ -4,6 +4,7 @@ require_once(dirname(__FILE__)."/autoload.php");
 use Overtrue\Wechat\Server;
 use Overtrue\Wechat\Message;
 use Overtrue\Wechat\Broadcast;
+use Overtrue\Wechat\Auth as WeixinAuth;
 
 
 //$server->on('message', function($message){
@@ -43,7 +44,7 @@ class Weixin {
     }
 
     public static function app($type) {
-        if(!in_array($type, ['serve', 'broadcast'])) {
+        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth'])) {
             throw new Exception('app type is not correct');
         }
 
@@ -53,6 +54,9 @@ class Weixin {
             }
             if($type == 'broadcast') {
                  $app = new Broadcast(self::$appId, self::$sercet);
+            }
+            if($type == 'auth') {
+                 $app = new WeixinAuth(self::$appId, self::$sercet);
             }
             self::$apps[$type] = $app;
         }

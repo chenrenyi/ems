@@ -32,8 +32,10 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-        echo 'ok';
-        Weixin::test();
+        $auth = Weixin::app('auth');
+        $user = $auth->authorize('http://em.chenrenyi.cn/weixin');
+        var_dump($user);
+
 		//return view('home');
 	}
 
