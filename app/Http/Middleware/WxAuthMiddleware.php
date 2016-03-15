@@ -3,6 +3,7 @@
 use Closure;
 use Weixin;
 use Session;
+use Redirect;
 
 class WxAuthMiddleware {
 
@@ -16,9 +17,7 @@ class WxAuthMiddleware {
 	public function handle($request, Closure $next)
 	{
         if(!Session::get('openid', null)) {
-            $auth = Weixin::app('auth');
-            $user = $auth->authorize('http://em.chenrenyi.cn');
-            Session::put('openid', $user['openid']);
+			return Redirect::to('weixin/auth');
         }
 		return $next($request);
 	}

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Student;
-use Weixin, Input, Session;
+use Weixin, Input, Session, Redirect;
 
 class WeChatController extends Controller {
 
@@ -28,6 +28,10 @@ class WeChatController extends Controller {
         echo $weixin->send($message);
     }
 
+	public function getTest()
+	{
+	}
+
     public function anyServe()
     {
         $weixin = Weixin::app('serve');
@@ -36,7 +40,7 @@ class WeChatController extends Controller {
              return 'developing.... by chenrenyi';
         });
 
-        $weixin->on('event', 'subscribe', function($event){
+        $weixin->on('event', function($event){
             $openid = $event['FromUserName'];
             $student = Student::where('wid', '=', $openid)->first();
             if(empty($student)) {
@@ -50,6 +54,16 @@ class WeChatController extends Controller {
 
         echo $weixin->serve();
     }
+
+	public function anyAuth()
+	{
+		$auth = Weixin::app('auth');
+		if(!Session::get('openid', null)) {
+			$user = $auth->authorize();
+			Session::put('openid', $user['openid']);
+		}
+		return Redirect::back();
+	}
 
     public function getBindinfo()
     {
