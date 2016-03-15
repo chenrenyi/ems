@@ -23,7 +23,7 @@ class WeChatController extends Controller {
     {
         $weixin = Weixin::sigleton();
         $message = $weixin->makeMsg('text', 'hello everyone');
-        $weixin->send($message);
+        echo $weixin->send($message);
     }
 
     public function anyServe()

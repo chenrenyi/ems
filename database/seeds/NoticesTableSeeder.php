@@ -7,8 +7,6 @@ class NoticesTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('notices')->delete();
-
         Notices::create([
             'content' => 'content',
             'class' => '1',
