@@ -23,8 +23,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-        $this->middleware('wxauth');
-        Session::forget('openid');
+        //$this->middleware('wxauth');
 	}
 
 	/**
