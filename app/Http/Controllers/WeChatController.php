@@ -18,7 +18,7 @@ class WeChatController extends Controller {
 	public function getIndex()
 	{
         $auth = Weixin::app('auth');
-        $var_dump($auth->user());
+        var_dump($auth->user());
 	}
 
     public function getSend()
@@ -55,33 +55,34 @@ class WeChatController extends Controller {
         echo $weixin->serve();
     }
 
-	public function anyAuth()
+	public function anyAuth($url)
 	{
 		$auth = Weixin::app('auth');
 		if(!Session::get('openid', null)) {
 			$user = $auth->authorize();
 			Session::put('openid', $user['openid']);
 		}
-		return Redirect::back();
+		return Redirect::to(base64_decode($url));
 	}
 
     public function getBindinfo()
     {
-         return view('weixin.bindinfo');
+        $student = Student::where('wid', '=', Session::get('openid'))->firstOrFail();
+		$name = $student->name;
+		$number = $student->number;
+		if(empty($name) || empty($number)) {
+			return view('weixin.bindinfo');
+		}
+		return view('weixin.msg')->withMsg('已经绑定过了')->withContent('学号：'.$number.'  姓名：'.$name);
     }
 
-    public function postSaveInfo(Request $request)
+    public function anySaveinfo(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'number' => 'required',
-        ]);
-
         $student = Student::where('wid', '=', Session::get('openid'))->firstOrFail();
         $student->name = Input::get('name');
         $student->number = Input::get('number');
         if($student->save()) {
-             Return Redirect::to('weixin.savedone');
+            return view('weixin.msg')->withMsg('保存成功');
         } else {
             return Redirect::back()->withInput()->withError('保存失败');
         }
