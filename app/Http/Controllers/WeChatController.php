@@ -73,7 +73,7 @@ class WeChatController extends Controller {
 		if(empty($name) || empty($number)) {
 			return view('weixin.bindinfo');
 		}
-		return view('weixin.msg')->withMsg('已经绑定过了')->withContent('学号：'.$number.'  姓名：'.$name);
+		return view('weixin.msg')->withMsg('已经绑定过了')->withContent('学号：'.$number.'      姓名：'.$name);
     }
 
     public function anySaveinfo(Request $request)
