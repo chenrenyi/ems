@@ -46,14 +46,26 @@ class WeChatController extends Controller {
     {
         $weixin = Weixin::app('serve');
 
+		//处理用户消息
         $weixin->on('message', function($message){
 			$msg = new Message;
 			$msg->userid = Student::where('wid', '=', $message->FromUserName)->first();
-			$msg->content = json_encode($message);			
+			$msg->type = $message->MsgType;
+
+			if($msg->type == 'text') {
+				$content = $message->Content;
+			} elseif ($msg->type == 'image') {
+				$content = $message->PicUrl;
+			} else {
+				return '暂时只支持接收文字和图片消息';
+			}
+
+			$msg->content = $content;
 			$msg->save();
-            return 'developing.... by chenrenyi';
+            return '老师已收到问题或者反馈，若有必要可能会回复';
         });
 
+		//处理微信事件
         $weixin->on('event', function($event){
             $openid = $event['FromUserName'];
             $student = Student::where('wid', '=', $openid)->first();

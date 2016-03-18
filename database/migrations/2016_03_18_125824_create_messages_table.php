@@ -16,8 +16,8 @@ class CreateMessagesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('userid');
-			$table->json('content');
-			$table->tinyInteger('type')->default(0);
+			$table->string('type');
+			$table->string('content');
 			$table->timestamps();
 		});
 	}
