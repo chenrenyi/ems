@@ -5,10 +5,17 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Student;
+use App\Student, App\Message;
 use Weixin, Input, Session, Redirect;
 
 class WeChatController extends Controller {
+
+	protected $weixin;
+
+	public function __construct()
+	{
+		$this->weixin = Weixin::sigleton();
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -23,13 +30,16 @@ class WeChatController extends Controller {
 
     public function getSend()
     {
-        $weixin = Weixin::sigleton();
-        $message = $weixin->makeMsg('text', 'hello everyone');
-        echo $weixin->send($message);
+        $message = $this->weixin->makeMsg('text', 'hello everyone');
+        echo $this->weixin->send($message);
     }
 
 	public function getTest()
 	{
+		$staff = Weixin::app('staff');
+        $message = $this->weixin->makeMsg('text', 'hello chenrenyi');
+		$openid = 'oZwBKxK9RAWmMFzhT5_nMrhMF4LE';
+		$staff->send($message)->to($openid);
 	}
 
     public function anyServe()
@@ -37,7 +47,11 @@ class WeChatController extends Controller {
         $weixin = Weixin::app('serve');
 
         $weixin->on('message', function($message){
-             return 'developing.... by chenrenyi';
+			$msg = new Message;
+			$msg->userid = Student::where('wid', '=', $message->FromUserName)->first();
+			$msg->content = json_encode($message);			
+			$msg->save();
+            return 'developing.... by chenrenyi';
         });
 
         $weixin->on('event', function($event){

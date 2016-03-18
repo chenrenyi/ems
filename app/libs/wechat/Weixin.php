@@ -5,6 +5,7 @@ use Overtrue\Wechat\Server;
 use Overtrue\Wechat\Message;
 use Overtrue\Wechat\Broadcast;
 use Overtrue\Wechat\Auth as WeixinAuth;
+use Overtrue\Wechat\Staff;
 
 
 //$server->on('message', function($message){
@@ -44,7 +45,7 @@ class Weixin {
     }
 
     public static function app($type) {
-        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth'])) {
+        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth', 'staff'])) {
             throw new Exception('app type is not correct');
         }
 
@@ -58,6 +59,9 @@ class Weixin {
             if($type == 'auth') {
                  $app = new WeixinAuth(self::$appId, self::$sercet);
             }
+			if($type == 'staff') {
+				$app = new Staff(self::$appId, self::$sercet);
+			}
             self::$apps[$type] = $app;
         }
         return self::$apps[$type];
