@@ -1,0 +1,45 @@
+.message-item-wrapper{
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.replay-editor{
+	display: none;
+	border-top: 1px solid #e7e7eb;
+	padding: 15px 40px 0 60px;
+	margin-top: 15px;
+}
+
+.wechat-editor{
+    border: 1px solid #e7e7eb;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.editor-content{
+	border-bottom: 1px solid #e7e7eb;
+    min-height: 100px;
+    padding: 10px;
+    outline: 0;
+}
+
+.editor-tool-bar{
+    padding: 0 10px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.replay-container{
+	padding: 15px 5px 0;
+	margin-left: 57px;
+}
+
+.replay-container .ion-ios-chatboxes{
+	margin: 0 5px;
+}
+
+.replay-container .time{
+	float: right;
+}

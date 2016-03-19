@@ -36,15 +36,13 @@ class WeChatController extends Controller {
 
 	public function getTest()
 	{
-		$staff = Weixin::app('staff');
-        $message = $this->weixin->makeMsg('text', 'hello chenrenyi');
-		$openid = 'oZwBKxK9RAWmMFzhT5_nMrhMF4LE';
-		$staff->send($message)->to($openid);
+		return view('test');
 	}
 
     public function anyServe()
     {
         $weixin = Weixin::app('serve');
+        $userService = Weixin::app('user');
 
 		//处理用户消息
         $weixin->on('message', function($message){
@@ -70,8 +68,11 @@ class WeChatController extends Controller {
             $openid = $event['FromUserName'];
             $student = Student::where('wid', '=', $openid)->first();
             if(empty($student)) {
+            	$user = $userService->get($openid);
                 $student = new Student;
                 $student->wid = $openid;
+                $student->name = $user->nickname;
+                $student->head = $user->headimgurl;
                 $student->save();
             }
 

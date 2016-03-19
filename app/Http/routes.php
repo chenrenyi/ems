@@ -17,8 +17,11 @@ Route::get('weixin/bindinfo', ['middleware' => 'wxauth', 'uses' => 'WeChatContro
 Route::controller('weixin', 'WeChatController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
-    Route::get('/', 'AdminHomeController@index');
+    Route::get('/', function(){
+		return redirect('admin/messages');
+	});
     Route::resource('notices', 'NoticesController');
+	Route::controller('messages', 'MessageController');
 });
 
 Route::controllers([

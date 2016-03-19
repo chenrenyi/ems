@@ -6,6 +6,7 @@ use Overtrue\Wechat\Message;
 use Overtrue\Wechat\Broadcast;
 use Overtrue\Wechat\Auth as WeixinAuth;
 use Overtrue\Wechat\Staff;
+use Overtrue\Wechat\User;
 
 
 //$server->on('message', function($message){
@@ -45,7 +46,7 @@ class Weixin {
     }
 
     public static function app($type) {
-        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth', 'staff'])) {
+        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth', 'staff', 'user'])) {
             throw new Exception('app type is not correct');
         }
 
@@ -62,6 +63,9 @@ class Weixin {
 			if($type == 'staff') {
 				$app = new Staff(self::$appId, self::$sercet);
 			}
+            if($type == 'user') {
+                $app = new User(self::$appId, self::sercet);
+            }
             self::$apps[$type] = $app;
         }
         return self::$apps[$type];
@@ -77,10 +81,40 @@ class Weixin {
         }
     }
 
+	//新建消息
     public static function makeMsg($type, $content) {
         if($type == 'text') {
             $message = Message::make('text')->content($content);
         }
         return $message;
+    }
+
+    //时间转换函数(把时间显示人性化)
+    public static function formatTime($time)
+    {
+        $time = strtotime($time);
+        $rtime = date("m-d H:i",$time);     
+        $htime = date("H:i",$time);           
+        $time = time() - $time;       
+        if ($time < 60) {         
+            $str = '刚刚';       
+        } elseif ($time < 60 * 60){         
+            $min = floor($time/60);         
+            $str = $min.'分钟前';     
+        } elseif ($time < 60 * 60 * 24){         
+            $h = floor($time/(60*60));         
+            $str = $h.'小时前 '.$htime;     
+        } elseif ($time < 60 * 60 * 24 * 3){         
+            $d = floor($time/(60*60*24));         
+            if ($d==1){
+                $str = '昨天 '.$rtime;
+            } else {
+                $str = '前天 '.$rtime;     
+            }
+        } else {         
+            $str = $rtime;     
+        }     
+
+        return $str; 
     }
 }
