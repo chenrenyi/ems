@@ -42,7 +42,6 @@ class WeChatController extends Controller {
     public function anyServe()
     {
         $weixin = Weixin::app('serve');
-        $userService = Weixin::app('user');
 
 		//处理用户消息
         $weixin->on('message', function($message){
@@ -68,6 +67,7 @@ class WeChatController extends Controller {
             $openid = $event['FromUserName'];
             $student = Student::where('wid', '=', $openid)->first();
             if(empty($student)) {
+				$userService = Weixin::app('user');
             	$user = $userService->get($openid);
                 $student = new Student;
                 $student->wid = $openid;
