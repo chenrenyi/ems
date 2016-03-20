@@ -46,7 +46,7 @@ class WeChatController extends Controller {
 		//处理用户消息
         $weixin->on('message', function($message){
 			$msg = new Message;
-			$msg->userid = Student::where('wid', '=', $message->FromUserName)->first();
+			$msg->userid = Student::where('wid', '=', $message->FromUserName)->first()->id;
 			$msg->type = $message->MsgType;
 
 			if($msg->type == 'text') {
