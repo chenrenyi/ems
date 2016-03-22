@@ -36,9 +36,9 @@
 						</div>
 					</div>
 					<div class="button-bar">
-						<button class="btn btn-success submit-reply" 'mid'={{ $msg['id'] }} >发送</button>
-						<button class="btn btn-light collapse-editor">收起</button>
-					</div>
+							<button class="btn btn-success submit-reply" 'mid'={{ $msg['id'] }} >发送</button>
+							<button class="btn btn-light collapse-editor">收起</button>
+						</div>
 				</div>
 
 				@if(isset($msg['reply']))

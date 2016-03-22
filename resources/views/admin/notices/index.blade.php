@@ -1,51 +1,45 @@
-@extends('app')
+@extends('layouts.admin')
 
-@section('content')
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading">管理通知</div>
+@section('cssjs')
+	@parent
+	<link rel="stylesheet" href="/css/admin/notice.css">
+@endsection
 
-        <div class="panel-body">
+@section('page-content')
+<h2 class="page-title">通知管理 <a href="{{ URL('admin/notices/create') }}" class="btn btn-success btn-sm">新建通知</a></h2>
+<hr>
+<div class="notice-item-wrapper">
 
-        <table class="table table-striped">
-          <tr class="row">
-            <th class="col-lg-2">标题</th>
-            <th class="col-lg-4">内容</th>
-            <th class="col-lg-4">发布时间</th>
-            <th class="col-lg-1">编辑</th>
-            <th class="col-lg-1">删除</th>
-          </tr>
-          @foreach ($notices as $notice)
-            <tr class="row">
-              <td class="col-lg-2">
-                {{ $notice->title  }}
-              </td>
-              <td class="col-lg-6">
-                {{ $notice->content  }}
-              </td>
-              <td class="col-lg-4">
-                {{ $notice->created_at  }}
-              </td>
-              <td class="col-lg-1">
-                <a href="{{ URL('admin/notices/'.$notice->id.'/edit')  }}" class="btn btn-success">编辑</a>
-              </td>
-              <td class="col-lg-1">
-                <form action="{{ URL('admin/notices/'.$notice->id)  }}" method="POST" style="display: inline;">
-                  <input name="_method" type="hidden" value="DELETE">
-                  <input type="hidden" name="_token" value="{{ csrf_token()  }}">
-                  <button type="submit" class="btn btn-danger">删除</button>
-                </form>
-              </td>
-            </tr>
-          @endforeach
-        </table>
+	<div class="notice-item row">
+		<div class="col-md-6">
+			<img src="/images/default.jpg">
+			<p class="notice-content">[文字]吓死我了</p>
+		</div>
+		<div class="col-md-3">
+			<p>2015年12月30号</p>
+			<p class="font-color-gray">全部学生</p>
+		</div>
+		<div class="col-md-3 font-color-gray text-right">发送完毕</div>
+	</div>
+
+	<div class="notice-item row">
+		<div class="col-md-6">
+			<img src="/images/default.jpg">
+			<p class="notice-content">[文字]吓死我了</p>
+		</div>
+		<div class="col-md-3">
+			<p>2015年12月30号</p>
+			<p class="font-color-gray">全部学生</p>
+		</div>
+		<div class="col-md-3 font-color-gray text-right">发送完毕</div>
+	</div>
 
 
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="piga"></div>
 </div>
+@endsection
+
+@section('afterjs')
+	@parent
+	<script src="/js/admin/notice.js"></script>
 @endsection

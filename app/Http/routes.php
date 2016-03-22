@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	});
     Route::resource('notices', 'NoticesController');
 	Route::controller('messages', 'MessageController');
+	Route::controller('students', 'StudentController');
 });
 
 Route::controllers([

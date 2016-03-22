@@ -11,8 +11,9 @@ body{
 
 .btn-success, .btn-success:focus, .btn-success:hover, .btn-success:active, .btn-success:active:hover{
     color: #fff;		
-    background-color: #00a7e6;
+    background-color: rgb(0, 185, 255);
     border-color: #0098d1;
+    border-radius: 0;
 }
 
 
@@ -36,6 +37,49 @@ body{
 
 .navbar-nav>li>a, .navbar-brand{
 	line-height: 30px;
+}
+
+.nav-tabs{
+	font-size: 14px;
+	border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs>li {
+	text-align: center;
+	float: left;
+	margin-bottom: -1px;
+	display: block;
+	position: relative;
+    min-width: 130px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    border: none;
+    border-bottom: 3px solid #00B9FF;
+    margin-bottom: -1px;
+    color: #555;	
+    background-color: #fff;
+    cursor: default;
+}
+
+.nav-tabs>li>a,.nav-tabs>li>a:active, .nav-tabs>li>a:focus{
+	color: #555;
+	border: none;
+	background-color: #fff;
+	cursor: auto;
+}
+
+.nav-tabs>li>a:hover{
+    border: none;
+    border-bottom: 3px solid #00B9FF;
+    margin-bottom: -1px;
+    color: #555;	
+    background-color: #fff;
+    cursor: auto;
+}
+
+hr{
+	margin: 10px 0;
 }
 
 
@@ -72,7 +116,7 @@ body{
 	vertical-align: top;
 	flex: 1;
 	color: rgb(51,51,51);
-	padding: 0;
+	padding: 0 0 30px 0;
 	font-size: 16px;
 }
 
