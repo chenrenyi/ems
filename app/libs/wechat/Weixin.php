@@ -64,7 +64,7 @@ class Weixin {
 				$app = new Staff(self::$appId, self::$sercet);
 			}
             if($type == 'user') {
-                $app = new User(self::$appId, self::sercet);
+                $app = new User(self::$appId, self::$sercet);
             }
             self::$apps[$type] = $app;
         }
