@@ -49,7 +49,7 @@
 						</a>
 						<ul class="sub-nav">
 							<li>
-								<a href="{{ URL('admin/messages') }}" class="active bg-nav"><span>学生反馈</span></a>
+								<a href="{{ URL('admin/messages') }}" class="bg-nav"><span>学生反馈</span></a>
 							</li>
 							<li>
 								<a href="{{ URL('admin/notices') }}" class="bg-nav"><span>通知管理</span></a>
@@ -60,15 +60,21 @@
 					<li class="nav-group">
 						<a href="#" class="bg-nav bg-nav-title">
 							<i class="ion-ios-chatboxes"></i>
-							<span>消息</span>
+							<span>功能</span>
 							<i class="ion-ios-arrow-down"></i>
 						</a>
 						<ul class="sub-nav">
 							<li>
-								<a href="#" class="bg-nav"><span>实时消息</span></a>
+								<a href="#" class="bg-nav"><span>学生管理</span></a>
 							</li>
 							<li>
-								<a href="#" class="bg-nav"><span>学生管理</span></a>
+								<a href="#" class="bg-nav"><span>班级管理</span></a>
+							</li>
+							<li>
+								<a href="#" class="bg-nav"><span>课表管理</span></a>
+							</li>
+							<li>
+								<a href="#" class="bg-nav"><span>成绩管理</span></a>
 							</li>
 						</ul>
 					</li>
@@ -87,7 +93,26 @@
 
 	<div class="foot">
 		<p>Developed By Chenrenyi. ©  2016 All Rights Reserved.</p>
-	</div>	
+	</div>
+
+	<!-- Small modal -->
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        		<h4 class="modal-title">title</h4>
+	      		</div>
+	      		<div class="modal-body">
+	        		<p>content</p>
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+	      		</div>
+	    	</div><!-- /.modal-content -->
+	  	</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
+
 @endsection
 
 @section('afterjs')

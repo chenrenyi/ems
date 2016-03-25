@@ -43,6 +43,7 @@
 }
 
 .wechat-editor{
+    font-size: 14px;
     border: 1px solid #e7e7eb;
     margin: 10px 0;
     text-align: left;
@@ -59,4 +60,50 @@
     padding: 0 10px;
     height: 35px;
     line-height: 35px;
+}
+
+.picture-wrapper{
+    border: 1px dashed #e7e7eb;
+    margin: 5px;
+    text-align: center;
+    height: 160px;
+    color: #e7e7eb;
+}
+
+.picture-wrapper>span{
+    font-size: 80px;
+}
+
+.picture-wrapper>p{
+    color: #e7e7eb;
+    font-size: 14px;
+}
+
+.editor-title{
+    font-size: 22px;
+    padding: 10px;
+    line-height: 40px;
+    outline: 0;
+    border-bottom: 1px solid #e7e7eb;
+}
+
+.editor-summary{
+    padding: 10px;
+    border: 1px solid #e7e7eb;
+    height: 100px;
+    outline: 0;
+    margin-bottom: 15px;
+}
+
+.editor-cover{
+    margin: 10px auto;
+}
+
+label{
+    font-weight: 200;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+  content:attr(placeholder);
+  color:grey;
 }

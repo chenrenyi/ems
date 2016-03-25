@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Notices;
-use Redirect, Input;
+use Redirect, Input, Weixin;
 
 class NoticesController extends Controller {
 
@@ -15,7 +15,7 @@ class NoticesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
         return view('admin.notices.index')->withNotices(Notices::all());
 	}
@@ -25,7 +25,7 @@ class NoticesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getCreate()
 	{
 		return view('admin.notices.create');
 	}
@@ -35,12 +35,35 @@ class NoticesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function anyStore()
 	{
-        if (Notices::create(Input::all())) {
-             return Redirect::back();
+		$notice = new Notices;
+		$notice->content = Input::get('content');
+		$notice->class = Input::get('class');
+
+		$type = Input::get('type');
+
+		if($type == 'text') {
+			$notice->type = 0;
+			$msg = Weixin::makeMsg('text', $notice->content);
+		}
+
+		if($type == 'image') {
+
+		}
+
+		if($type == 'article') {
+			$notice->type = 1;
+			$notice->title = Input::get('title');
+			$notice->cover = Input::get('cover');
+			$notice->summary = Input::get('summary');
+		}
+
+        if ($notice->save()) {
+        	Weixin::send($msg, $notice->class);
+         	echo 0;	
         } else {
-            return Redirect::back()->withInput()->withErrors('创建失败！');
+        	echo 1;
         }
 	}
 

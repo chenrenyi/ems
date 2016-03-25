@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/', function(){
 		return redirect('admin/messages');
 	});
-    Route::resource('notices', 'NoticesController');
+    Route::controller('notices', 'NoticesController');
 	Route::controller('messages', 'MessageController');
 	Route::controller('students', 'StudentController');
 });

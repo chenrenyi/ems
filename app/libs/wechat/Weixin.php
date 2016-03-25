@@ -72,7 +72,7 @@ class Weixin {
     }
 
     //群发消息
-    public function send($message, $groupId=null) {
+    public static function send($message, $groupId=null) {
         $boardcast = self::app('broadcast');
         if($groupId === null) {
             $boardcast->send($message)->to();
