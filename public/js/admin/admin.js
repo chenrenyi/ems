@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	//左侧菜单显示隐藏
 	$(".bg-nav-title").click(function(){
-		$(this).next('ul').slideToggle('fast');
+		$(this).next('ul').slideToggle('normal');
 	});
 
 	var elements = $(".nav-tab-content .tab-panel");
@@ -47,13 +47,5 @@ $(document).ready(function(){
 			$(elements[i]).find('a').addClass('active');
 		}
 	};
-
- 	$(".sub-nav li").click(function(){
-    	var elements = $(".sub-nav li");
-    	for (var i = 0; i < elements.length; i++) {
-    		$(elements[i]).find('a').removeClass("active");
-    	};
-    	$(this).find('a').addClass("active");
- 	});
 
 });

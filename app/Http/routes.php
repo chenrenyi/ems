@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::controller('notices', 'NoticesController');
 	Route::controller('messages', 'MessageController');
 	Route::controller('students', 'StudentController');
+	Route::controller('classes', 'ClassesController');
+	Route::controller('score', 'ScoreController');
 });
 
 Route::controllers([

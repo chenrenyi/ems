@@ -27,6 +27,7 @@ body{
 }
 
 .navbar-header{
+	min-width: 220px;
 	height: 60px;
 }
 

@@ -17,7 +17,8 @@ class StudentController extends Controller {
 	 */
 	public function anyIndex()
 	{
-		return view('admin.student');
+		$students = Student::orderBy('id', 'desc')->get();
+		return view('admin.student')->withStudents($students);
 	}
 
 }

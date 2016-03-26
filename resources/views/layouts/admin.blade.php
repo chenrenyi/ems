@@ -59,22 +59,22 @@
 
 					<li class="nav-group">
 						<a href="#" class="bg-nav bg-nav-title">
-							<i class="ion-ios-chatboxes"></i>
+							<i class="ion-ios-keypad"></i>
 							<span>功能</span>
 							<i class="ion-ios-arrow-down"></i>
 						</a>
 						<ul class="sub-nav">
 							<li>
-								<a href="#" class="bg-nav"><span>学生管理</span></a>
+								<a href="{{ URL('/admin/students') }}" class="bg-nav"><span>学生管理</span></a>
 							</li>
 							<li>
-								<a href="#" class="bg-nav"><span>班级管理</span></a>
+								<a href="{{ URL('/admin/classes') }}" class="bg-nav"><span>班级管理</span></a>
 							</li>
 							<li>
 								<a href="#" class="bg-nav"><span>课表管理</span></a>
 							</li>
 							<li>
-								<a href="#" class="bg-nav"><span>成绩管理</span></a>
+								<a href="{{ URL('/admin/score') }}" class="bg-nav"><span>成绩管理</span></a>
 							</li>
 						</ul>
 					</li>
