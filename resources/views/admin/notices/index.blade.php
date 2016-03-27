@@ -10,32 +10,21 @@
 <hr>
 <div class="notice-item-wrapper">
 
-	<div class="notice-item row">
-		<div class="col-md-6">
-			<img src="/images/default.jpg">
-			<p class="notice-content">[文字]吓死我了</p>
+	@foreach($notices as $notice)
+		<div class="notice-item row">
+			<div class="col-md-6">
+				<img src={{$notice->cover ? '/uploads/images/'.$notice->cover : "/images/default.jpg" }}>
+				<p class="notice-content">[{{ $notice->type == 0 ? '文字' : '图文' }}]{{ $notice->content }}</p>
+			</div>
+			<div class="col-md-3">
+				<p>{{ $notice->created_at }}</p>
+				<p class="font-color-gray">全部学生</p>
+			</div>
+			<div class="col-md-3 font-color-gray text-right">发送完毕</div>
 		</div>
-		<div class="col-md-3">
-			<p>2015年12月30号</p>
-			<p class="font-color-gray">全部学生</p>
-		</div>
-		<div class="col-md-3 font-color-gray text-right">发送完毕</div>
-	</div>
+	@endforeach
 
-	<div class="notice-item row">
-		<div class="col-md-6">
-			<img src="/images/default.jpg">
-			<p class="notice-content">[文字]吓死我了</p>
-		</div>
-		<div class="col-md-3">
-			<p>2015年12月30号</p>
-			<p class="font-color-gray">全部学生</p>
-		</div>
-		<div class="col-md-3 font-color-gray text-right">发送完毕</div>
-	</div>
-
-
-	<div id="piga"></div>
+	<div id="piga">{!! $paginate !!}</div>
 </div>
 @endsection
 

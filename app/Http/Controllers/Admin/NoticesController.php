@@ -17,7 +17,9 @@ class NoticesController extends Controller {
 	 */
 	public function getIndex()
 	{
-        return view('admin.notices.index')->withNotices(Notices::all());
+		$notices = Notices::orderBy('created_at', 'desc')->paginate(4);
+		$paginatehtml = $notices->render();
+        return view('admin.notices.index')->withNotices($notices)->withPaginate($paginatehtml);
 	}
 
 	/**
@@ -55,8 +57,28 @@ class NoticesController extends Controller {
 		if($type == 'article') {
 			$notice->type = 1;
 			$notice->title = Input::get('title');
-			$notice->cover = Input::get('cover');
 			$notice->summary = Input::get('summary');
+
+			$file = Input::file('image');
+			$filename = $file->getClientOriginalName();
+			$extension = $file->getClientOriginalExtension() ?: 'png';
+            $folderName = 'uploads/images/';
+            $destinationPath = public_path() . '/' . $folderName;
+            $safeName = str_random(10).'.'.$extension;
+            $file->move($destinationPath, $safeName);
+
+            $notice->cover = $safeName;
+
+            $msgdata = [
+            	'title'=> $notice->title,
+            	'thumb_media_id'=> $safeName,
+            	'author'=> '',
+            	'digest'=> $notice->summary,
+            	'show_cover_pic'=> 1,
+            	'content'=> $notice->content,
+            	'content_source_url'=> '',
+            ];
+            $msg = Weixin::makeMsg('article', $msgdata);
 		}
 
         if ($notice->save()) {

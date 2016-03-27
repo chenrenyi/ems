@@ -7,6 +7,7 @@ use Overtrue\Wechat\Broadcast;
 use Overtrue\Wechat\Auth as WeixinAuth;
 use Overtrue\Wechat\Staff;
 use Overtrue\Wechat\User;
+use Overtrue\Wechat\Media;
 
 
 //$server->on('message', function($message){
@@ -46,7 +47,7 @@ class Weixin {
     }
 
     public static function app($type) {
-        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth', 'staff', 'user'])) {
+        if(!in_array($type, ['serve', 'broadcast', 'js', 'auth', 'staff', 'user', 'media'])) {
             throw new Exception('app type is not correct');
         }
 
@@ -65,6 +66,9 @@ class Weixin {
 			}
             if($type == 'user') {
                 $app = new User(self::$appId, self::$sercet);
+            }
+            if($type == 'media') {
+                $app = new Media(self::$appId, self::$sercet);
             }
             self::$apps[$type] = $app;
         }
@@ -85,6 +89,18 @@ class Weixin {
     public static function makeMsg($type, $content) {
         if($type == 'text') {
             $message = Message::make('text')->content($content);
+        }
+        if($type == 'article') {
+            $media = self::app('media');
+
+            //上传封面图
+            $image_path = public_path() . '/uploads/images/' . $content['thumb_media_id'];
+            $cover = $media->forever()->image($image_path);
+            $content['thumb_media_id'] = $cover['media_id'];
+
+            //上传图文
+            $article_media_id = $media->news([$content]);
+            $message = Message::make('mp_news')->media_id($article_media_id);
         }
         return $message;
     }

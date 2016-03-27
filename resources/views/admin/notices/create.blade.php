@@ -59,30 +59,36 @@
 	</div>
 
 	<div class="tab-panel" id="notice-type-article">
-		<div class="notice-range">
-			<label>群发对象：</label>
-			<select class="form-control">  
-		  		<option value ="1">全部同学</option>  
-		  		<option value ="2">一班</option>  
-		  		<option value="3">二班</option>  
-		  		<option value="4">三班</option>  
-			</select>
-		</div>
-		<div class="wechat-editor">
-			<div class="editor-title" contenteditable="true" placeholder="请在这里输入标题"></div>
-			<div class="editor-content" contenteditable="true" placeholder="从这里开始写正文"></div>
+		<form id="article-form" method="POST" action="/admin/notices/store" enctype="multipart/form-data">
+			<div class="notice-range">
+				<label>群发对象：</label>
+				<select name="class" class="form-control">  
+			  		<option value ="1">全部同学</option>  
+			  		<option value ="2">一班</option>  
+			  		<option value="3">二班</option>  
+			  		<option value="4">三班</option>  
+				</select>
+			</div>
+			<div class="wechat-editor">
+				<div class="editor-title" contenteditable="true" placeholder="请在这里输入标题"></div>
+				<div class="editor-content" contenteditable="true" placeholder="从这里开始写正文"></div>
 
-		</div>
-		<div class="form-group editor-cover">
-	   		<label for="exampleInputFile">封面图片</label>
-	    	<input type="file" id="exampleInputFile">
-	    	<p class="help-block">大图片建议尺寸：900像素 * 500像素</p>
-	  	</div>
-	  	<label>摘要：</label>
-		<div class="editor-summary" contenteditable="true" placeholder="选填，如果不填写会默认抓取正文前54个字"></div>
-		<div class="button-bar">
-			<button id="send-article" class="btn btn-success submit-reply"} >群发</button>
-		</div>
+			</div>
+			<div class="form-group editor-cover">
+				<input id="title" name="title" type="text" class="hide">
+				<input id="content" name="content" type="text" class="hide">
+				<input id="summary" name="summary" type="text" class="hide">
+				<input name="type" value="article" type="text" class="hide">
+		   		<label for="exampleInputFile">封面图片</label>
+		    	<input name="image" type="file" id="exampleInputFile">
+		    	<p class="help-block">大图片建议尺寸：900像素 * 500像素</p>
+		  	</div>
+		  	<label>摘要：</label>
+			<div class="editor-summary" contenteditable="true" placeholder="选填，如果不填写会默认抓取正文前54个字"></div>
+			<div class="button-bar">
+				<button id="send-article" class="btn btn-success submit-reply" type="submit" >群发</button>
+			</div>
+		</form>
 	</div>
 </div>
 

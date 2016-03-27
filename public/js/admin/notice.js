@@ -32,4 +32,19 @@ $(document).ready(function(){
 			}
 		);
 	});
+
+	console.log($('#article-form'));
+	//提交
+	$('#article-form').submit(function(){
+		var title = $('#notice-type-article').find('.editor-title').text();
+		var content = $('#notice-type-article').find('.editor-content').text();
+		var summary = $('#notice-type-article').find('.editor-summary').text();
+
+		$('#title').val(title);
+		$('#content').val(content);
+		$('#summary').val(summary);
+
+		console.log(title+content+summary);
+		return true;
+	});
 })
