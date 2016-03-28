@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/admin/notices/history', 'NoticesController@getHistory');
 
 Route::get('weixin/bindinfo', ['middleware' => 'wxauth', 'uses' => 'WeChatController@getBindinfo']);
 Route::controller('weixin', 'WeChatController');

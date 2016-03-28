@@ -89,6 +89,13 @@ class NoticesController extends Controller {
         }
 	}
 
+	//历史消息页面
+	public function getHistory() {
+		$notices = Notices::orderBy('created_at', 'desc')->paginate(10);
+		$paginatehtml = $notices->render();
+		return view('admin.notices.history')->withNotices($notices)->withPaginate($paginatehtml);
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
