@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/admin/notices/history', 'Admin\NoticesController@history');
-
 Route::get('weixin/bindinfo', ['middleware' => 'wxauth', 'uses' => 'WeChatController@getBindinfo']);
 Route::controller('weixin', 'WeChatController');
+Route::resource('notices', 'NoticesController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
     Route::get('/', function(){

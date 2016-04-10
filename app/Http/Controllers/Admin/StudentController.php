@@ -21,4 +21,14 @@ class StudentController extends Controller {
 		return view('admin.student')->withStudents($students);
 	}
 
+	public function anyUpdate($type, $id) {
+		$student = Student::find($id);
+		if($type == 'name') {
+			$student->name = Input::get('val');
+		} elseif($type == 'number') {
+			$student->number = Input::get('val');
+		}
+		$student->save();
+	}
+
 }

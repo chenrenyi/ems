@@ -11,6 +11,16 @@ th{
 	font-weight: 200;
 }
 
+.name>input{
+	width: 85px;
+	height: 24px;
+}
+
+.number>input{
+	width: 130px;
+	height: 24px;
+}
+
 .student-item-wrapper{
 	padding: 19px;
 	margin-bottom: 20px;

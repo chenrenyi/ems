@@ -17,7 +17,28 @@ class ScoreController extends Controller {
 	 */
 	public function anyIndex()
 	{
-		return view('admin.score');
+		$students = Student::all();
+		return view('admin.score')->withStudents($students);
+	}
+
+	public function postUpdate() {
+		$score = Student::find(Input::get('studentid'))->score;
+		$id = Input::get('scoreid');
+		if($id == 1) {
+			$score->score1 = Input::get('val');
+		}
+		if($id == 2) {
+			$score->score2 = Input::get('val');
+		}
+		if($id == 3) {
+			$score->score3 = Input::get('val');
+		}
+		if($id == 4) {
+			$score->score4 = Input::get('val');
+		}
+		$score->scoresum = $score->score1 + $score->score2 + $score->score13 + $score->score4;
+		$score->save();
+
 	}
 
 }

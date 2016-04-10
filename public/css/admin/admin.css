@@ -199,3 +199,11 @@ h2.page-title{
 .tab-panel{
 	font-size: 14px;
 }
+
+.notice-info{
+	padding: 15px;
+	position: absolute;
+	top: 105px;
+	left: 565px;
+	display: none;
+}

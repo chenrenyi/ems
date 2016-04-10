@@ -29,10 +29,10 @@
 	    		@foreach($students as $student)
 		    		<tr>
 		    			<th>{{ $student->id }}</th>
-		    			<th>{{ $student->name }}</th>
-		    			<th>{{ $student->number }}</th>
+		    			<th class="name"><input type="text" class="hide" value="{{ $student->name }}"><span>{{ $student->name }}</span></th>
+		    			<th class="number"><input type="text" class="hide" value="{{ $student->number }}"><span>{{ $student->number }}</span></th>
 		    			<th>{{ $student->wid }}</th>
-		    			<th>{{ $student->class }}</th>
+		    			<th>{{ $student->classes->name }}</th>
 		    			<th>{{ $student->created_at }}</th>
 		    		</tr>
 	    		@endforeach

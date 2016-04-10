@@ -113,6 +113,8 @@
 	  	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->	
 
+	<p class="bg-primary notice-info"></p>
+
 @endsection
 
 @section('afterjs')

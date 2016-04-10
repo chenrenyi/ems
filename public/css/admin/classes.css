@@ -32,3 +32,22 @@
 	margin-top: 100px;
 	border-radius: 1px;
 }
+
+.panel-heading span.right{
+	padding: 0 10px;
+	float: right;
+}
+
+.panel-heading a{
+	color: inherit;
+}
+
+.panel-heading form{
+	display: inline-block;
+}
+
+#class-name-input{
+	width: 100px;
+	height: 22px;
+	display: inline-block;
+}

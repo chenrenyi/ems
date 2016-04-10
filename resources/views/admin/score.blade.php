@@ -11,7 +11,14 @@
 <div class="student-item-wrapper">
 	<div class="panel panel-default">
  		<!-- Default panel contents -->
-  		<div class="panel-heading">成绩录入</div>
+  		<div class="panel-heading">
+  			<span>成绩录入</span>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox"> 成绩已录好，发布供公开查询
+				</label>
+			</div>
+		</div>
 
   		<!-- Table -->
   		<table class="table">
@@ -28,16 +35,32 @@
 	    		</tr>	
 	    	</thead>
 	    	<tbody>
+	    		@foreach($students as $student)
 	    		<tr>
-	    			<th>1</th>
-	    			<th>白小书</th>
-	    			<th>2012063040012</th>
-	    			<th>20</th>
-	    			<th>10</th>
-	    			<th>30</th>
-	    			<th>40</th>
-	    			<th>100</th>
+	    			<th>{{ $student->id }}</th>
+	    			<th>{{ $student->name }}</th>
+	    			<th>{{ $student->number }}</th>
+	    			<th class="score" scoreid="1">
+	    				<input type="text" class="hide" value="{{ $student->score->score1 }}">
+	    				<span>{{ $student->score->score1 }}</span>
+	    			</th>
+	    			<th class="score" scoreid="2">
+	    				<input type="text" class="hide" value="{{ $student->score->score2 }}">
+	    				<span>{{ $student->score->score2 }}</span>
+	    			</th>
+	    			<th class="score" scoreid="3">
+	    				<input type="text" class="hide" value="{{ $student->score->score3 }}">
+	    				<span>{{ $student->score->score3 }}</span>
+	    			</th>
+	    			<th class="score" scoreid="4">
+	    				<input type="text" class="hide" value="{{ $student->score->score4 }}">
+	    				<span>{{ $student->score->score4 }}</span>
+	    			</th>
+	    			<th id="sumscore">
+	    				<span>{{ $student->score->scoresum }}</span>
+	    			</th>
 	    		</tr>
+	    		@endforeach
 	    	</tbody>
   		</table>
 	</div>

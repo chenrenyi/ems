@@ -16,3 +16,21 @@ th{
 	margin-bottom: 20px;
 	font-family: inherit;
 }
+
+input{
+	width: 30px;
+	height: 24px;
+}
+
+.checkbox {
+	margin: 0;
+	float: right;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.checkbox input{
+	width: auto;
+	height: auto;
+	display: inline-block;
+}

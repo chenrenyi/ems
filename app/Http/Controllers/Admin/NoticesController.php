@@ -89,12 +89,6 @@ class NoticesController extends Controller {
         }
 	}
 
-	//历史消息页面
-	public function history() {
-		$notices = Notices::orderBy('created_at', 'desc')->paginate(10);
-		$paginatehtml = $notices->render();
-		return view('admin.notices.history')->withNotices($notices)->withPaginate($paginatehtml);
-	}
 
 	/**
 	 * Display the specified resource.
@@ -132,7 +126,7 @@ class NoticesController extends Controller {
         if (Notices::where('id', $id)->update(Input::except(['_method', '_token']))) {
             return Redirect::to('admin/notices');
         } else {
-             return Redirect::back()->withInput()->withErrors('更新失败！');
+     		return Redirect::back()->withInput()->withErrors('更新失败！');
         }
 	}
 

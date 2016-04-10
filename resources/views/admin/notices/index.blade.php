@@ -14,7 +14,11 @@
 		<div class="notice-item row">
 			<div class="col-md-6">
 				<img src={{$notice->cover ? '/uploads/images/'.$notice->cover : "/images/default.jpg" }}>
-				<p class="notice-content">[{{ $notice->type == 0 ? '文字' : '图文' }}]{{ $notice->content }}</p>
+				@if($notice->type == 0)
+				<p class="notice-content">[文字]{{ $notice->content }}</p>
+				@else
+				<p class="notice-content">[图文]<a style="color:inherit;"href="/notices/{{ $notice->id }}">{{ $notice->title }}</a></p>
+				@endif
 			</div>
 			<div class="col-md-3">
 				<p>{{ $notice->created_at }}</p>

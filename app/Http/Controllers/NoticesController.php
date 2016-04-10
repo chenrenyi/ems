@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Notices;
+
 class NoticesController extends Controller {
 
 	/**
@@ -14,27 +16,9 @@ class NoticesController extends Controller {
 	 */
 	public function index()
 	{
-		//
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+		$notices = Notices::orderBy('created_at', 'desc')->paginate(10);
+		$paginatehtml = $notices->render();
+		return view('history')->withNotices($notices)->withPaginate($paginatehtml);
 	}
 
 	/**
@@ -45,7 +29,8 @@ class NoticesController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$notice = Notices::find($id);
+		return view('detail')->withNotice($notice);
 	}
 
 	/**

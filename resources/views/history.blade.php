@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/admin/noticelist.css">
+    <title>历史通知</title>
 </head>
 <body>
 	@foreach($notices as $notice)
@@ -14,7 +15,7 @@
 				<img src="/uploads/images/{{ $notice->cover }}">
 				<p class="summary">{{ $notice->summary }}</p>
 				<hr>
-				<p><a href="/admin/notices/show/{{ $notice->id }}">阅读全文</a></p>
+				<p><a href="/notices/{{ $notice->id }}">阅读全文</a></p>
 			</div>
 		@else
 			<div class="notice notice-text">

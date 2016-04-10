@@ -49,3 +49,13 @@ $(document).ready(function(){
 	};
 
 });
+
+//弹出消息
+function message(text) {
+	$('.notice-info').text(text);
+	$('.notice-info').fadeIn(1000, function(){
+		$('.notice-info').fadeTo(2000, 1, function(){
+			$('.notice-info').fadeOut(1000);
+		});
+	});
+}
