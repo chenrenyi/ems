@@ -71,10 +71,10 @@
 								<a href="{{ URL('/admin/classes') }}" class="bg-nav"><span>班级管理</span></a>
 							</li>
 							<li>
-								<a href="#" class="bg-nav"><span>课表管理</span></a>
+								<a href="{{ URL('/admin/score') }}" class="bg-nav"><span>成绩管理</span></a>
 							</li>
 							<li>
-								<a href="{{ URL('/admin/score') }}" class="bg-nav"><span>成绩管理</span></a>
+								<a href="#" class="bg-nav"><span>课表管理</span></a>
 							</li>
 						</ul>
 					</li>

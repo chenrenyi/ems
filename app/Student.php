@@ -9,6 +9,11 @@ class Student extends Model {
 	}
 
 	public function score() {
+		if(empty(Score::where('sid', '=', $this->id)->get())) {
+			$score = new Score;
+			$score->sid = $this->id;
+			$score->save();
+		}
 		return $this->hasOne('App\Score', 'sid');
 	}
 

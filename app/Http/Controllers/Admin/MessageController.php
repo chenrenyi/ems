@@ -18,7 +18,7 @@ class MessageController extends Controller {
 	public function anyIndex()
 	{
 		$data = [];
-		$messages = Message::orderBy('created_at', 'desc')->paginate(10);
+		$messages = Message::orderBy('created_at', 'desc')->paginate(5);
 		$paginatehtml = $messages->render();
 		foreach($messages as $msg) {
 			$tmp = [];
