@@ -79,7 +79,7 @@ class WeChatController extends Controller {
 	            }
 	             return Weixin::makeMsg('text', '感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
 
-        	} elseif ($event['Event'] == 'click') {
+        	} elseif ($event['Event'] == 'CLICK') {
         		if($event['EventKey'] == 'teacher') {
         			return Weixin::makeMsg('text', '你可以直接向公众号发送文字消息，老师将能够在后台看到');
         		} elseif($event['EventKey'] == 'score') {
@@ -88,8 +88,11 @@ class WeChatController extends Controller {
  					$msg .= '期中：' . $student->score->score3 . '，';
  					$msg .= '期末：' . $student->score->score4 . '，';
  					$msg .= '总分：' . $student->score->scoresum;
+					return Weixin::makeMsg('text', $msg);
         		}
-        	}
+        	} else {
+				return Weixin::makeMsg('text', $event['Event']);
+			}
 
         });
 
