@@ -66,17 +66,31 @@ class WeChatController extends Controller {
         $weixin->on('event', function($event){
             $openid = $event['FromUserName'];
             $student = Student::where('wid', '=', $openid)->first();
-            if(empty($student)) {
-				$userService = Weixin::app('user');
-            	$user = $userService->get($openid);
-                $student = new Student;
-                $student->wid = $openid;
-                $student->name = $user->nickname;
-                $student->head = $user->headimgurl;
-                $student->save();
-            }
 
-             return Weixin::makeMsg('text', '感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
+        	if($event['Event'] == 'subscribe') {
+	            if(empty($student)) {
+					$userService = Weixin::app('user');
+	            	$user = $userService->get($openid);
+	                $student = new Student;
+	                $student->wid = $openid;
+	                $student->name = $user->nickname;
+	                $student->head = $user->headimgurl;
+	                $student->save();
+	            }
+	             return Weixin::makeMsg('text', '感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
+
+        	} elseif ($event['Event'] == 'click') {
+        		if($event['EventKey'] == 'teacher') {
+        			return Weixin::makeMsg('text', '你可以直接向公众号发送文字消息，老师将能够在后台看到');
+        		} elseif($event['EventKey'] == 'score') {
+ 					$msg  = '平时成绩：' . $student->score->score1 . '，';
+ 					$msg .= '实验：' . $student->score->score2 . '，';
+ 					$msg .= '期中：' . $student->score->score3 . '，';
+ 					$msg .= '期末：' . $student->score->score4 . '，';
+ 					$msg .= '总分：' . $student->score->scoresum;
+        		}
+        	}
+
         });
 
         echo $weixin->serve();
