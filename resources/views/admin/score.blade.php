@@ -15,7 +15,7 @@
   			<span>成绩录入</span>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox"> 成绩已录好，发布供公开查询
+					<input type="checkbox" checked> 成绩已录好，发布供公开查询
 				</label>
 			</div>
 		</div>
