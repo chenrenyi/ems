@@ -79,6 +79,19 @@
 						</ul>
 					</li>
 
+					<li class="nav-group">
+						<a href="#" class="bg-nav bg-nav-title">
+							<i class="ion-gear-a"></i>
+							<span>设置</span>
+							<i class="ion-ios-arrow-down"></i>
+						</a>
+						<ul class="sub-nav">
+							<li>
+								<a href="{{ URL('/admin/user') }}" class="bg-nav"><span>修改密码</span></a>
+							</li>
+						</ul>
+					</li>
+
 				</ul>
 			</nav>
 

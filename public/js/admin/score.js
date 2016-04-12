@@ -36,4 +36,14 @@ $(document).ready(function(){
 		$('#sumscore span').text(sum);
 	});
 
+	$('#publish').change(function(){
+		$.post(
+			'/admin/score/publish',
+			{},
+			function(){
+				message('操作已保存');
+			}
+		);
+	})
+
 });

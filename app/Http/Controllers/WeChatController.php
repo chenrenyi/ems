@@ -84,6 +84,9 @@ class WeChatController extends Controller {
         		if($event['EventKey'] == 'teacher') {
         			return Weixin::makeMsg('text', '你可以直接向公众号发送文字消息，老师将能够在后台看到');
         		} elseif($event['EventKey'] == 'score') {
+        			if(Settings::find(1)->val == 0) {
+        				return Weixin::makeMsg('text', '老师尚未公布成绩');
+        			}
  					$msg  = '平时成绩：' . $student->score->score1 . '，';
  					$msg .= '实验：' . $student->score->score2 . '，';
  					$msg .= '期中：' . $student->score->score3 . '，';

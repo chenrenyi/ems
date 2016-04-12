@@ -11,6 +11,13 @@
 |
 */
 
+Route::get('/', function(){
+	return redirect('admin/messages');
+});
+Route::get('/home', function(){
+	return redirect('admin/messages');
+});
+
 Route::get('weixin/bindinfo', ['middleware' => 'wxauth', 'uses' => 'WeChatController@getBindinfo']);
 Route::controller('weixin', 'WeChatController');
 Route::resource('notices', 'NoticesController');
@@ -24,6 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	Route::controller('students', 'StudentController');
 	Route::controller('classes', 'ClassesController');
 	Route::controller('score', 'ScoreController');
+	Route::controller('user', 'UserController');
 });
 
 Route::controllers([

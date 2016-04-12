@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Student;
+use App\Student, App\Settings;
 use Weixin, Input;
 
 class ScoreController extends Controller {
@@ -17,8 +17,9 @@ class ScoreController extends Controller {
 	 */
 	public function anyIndex()
 	{
+		$ispublish = Settings::find(1)->val;
 		$students = Student::all();
-		return view('admin.score')->withStudents($students);
+		return view('admin.score')->withStudents($students)->withIspublish($ispublish);
 	}
 
 	public function postUpdate() {
@@ -39,6 +40,12 @@ class ScoreController extends Controller {
 		$score->scoresum = $score->score1 + $score->score2 + $score->score13 + $score->score4;
 		$score->save();
 
+	}
+
+	public function postPublish() {
+		$ispublish = Settings::find(1);
+		$ispublish->val = 1 - $ispublish->val;
+		$ispublish->save();
 	}
 
 }
