@@ -77,6 +77,10 @@ class WeChatController extends Controller {
 	                $student->head = $user->headimgurl;
 	                $student->classid = 1;
 	                $student->save();
+
+	                $score = new Score;
+	                $score->sid = $student->id;
+	                $score->save();
 	            }
 	             return Weixin::makeMsg('text', '感谢关注，请务必先<a href="http://em.chenrenyi.cn/weixin/bindinfo">绑定学号姓名</a>');
 
