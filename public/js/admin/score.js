@@ -30,10 +30,10 @@ $(document).ready(function(){
 		);
 
 		var sum = 0;
-		$('.score>span').each(function(i){
+		$(this).parent().parent().find('.score>span').each(function(i){
 			sum += parseInt($(this).text());
 		})
-		$('#sumscore span').text(sum);
+		$(this).parent().parent().find('#sumscore span').text(sum);
 	});
 
 	$('#publish').change(function(){
