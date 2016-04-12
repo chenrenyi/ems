@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Student, App\Message;
+use App\Student, App\Message, App\Settings;
 use Weixin, Input, Session, Redirect;
 
 class WeChatController extends Controller {
