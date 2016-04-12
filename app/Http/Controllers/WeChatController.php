@@ -97,6 +97,8 @@ class WeChatController extends Controller {
  					$msg .= '期末：' . $student->score->score4 . '，';
  					$msg .= '总分：' . $student->score->scoresum;
 					return Weixin::makeMsg('text', $msg);
+        		} elseif($event['EventKey'] == 'table') {
+        			return Weixin::makeMsg('text', '开发中');
         		}
         	} else {
 				return Weixin::makeMsg('text', $event['Event']);
