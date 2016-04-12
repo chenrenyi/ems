@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Notices;
+use App\Notices, App\Classes;
 use Redirect, Input, Weixin;
 
 class NoticesController extends Controller {
@@ -29,7 +29,8 @@ class NoticesController extends Controller {
 	 */
 	public function getCreate()
 	{
-		return view('admin.notices.create');
+		$classes = Classes::all();
+		return view('admin.notices.create')->withClasses($classes);
 	}
 
 	/**

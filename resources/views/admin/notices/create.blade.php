@@ -18,10 +18,10 @@
 		<div class="notice-range">
 			<label>群发对象：</label>
 			<select class="form-control">  
-		  		<option value ="0">全部同学</option>  
-		  		<option value ="1">一班</option>  
-		  		<option value="2">二班</option>  
-		  		<option value="3">三班</option>  
+		  		<option value ="0">全部同学</option>
+		  		@foreach($classes as $singlec)  
+		  		<option value ="{{ $singlec->id }}">{{ $singlec->name }}</option>
+		  		@endforeach  
 			</select>
 		</div>
 		<div class="wechat-editor">
