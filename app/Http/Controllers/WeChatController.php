@@ -98,8 +98,8 @@ class WeChatController extends Controller {
  					$msg .= '总分：' . $student->score->scoresum;
 					return Weixin::makeMsg('text', $msg);
         		} elseif($event['EventKey'] == 'table') {
-        			$timetable = Timetable::where('classid', '=', $student->classid);
-        			return Weixin::makeMsg('text', $timetable->sectionToString());
+        			$timetable = Timetable::where('classid', '=', $student->classid)->first();
+        			return Weixin::makeMsg('text', $timetable->name . '，' . $timetable->sectionToString());
         		}
         	} else {
 				return Weixin::makeMsg('text', $event['Event']);
