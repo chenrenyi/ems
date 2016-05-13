@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Student, App\Message, App\Settings, App\Score;
+use App\Student, App\Message, App\Settings, App\Score, App\Timetable;
 use Weixin, Input, Session, Redirect;
 
 class WeChatController extends Controller {
@@ -98,7 +98,8 @@ class WeChatController extends Controller {
  					$msg .= '总分：' . $student->score->scoresum;
 					return Weixin::makeMsg('text', $msg);
         		} elseif($event['EventKey'] == 'table') {
-        			return Weixin::makeMsg('text', '开发中');
+        			$timetable = Timetable::where('classid', '=', $student->classid);
+        			return Weixin::makeMsg('text', $timetable->sectionToString());
         		}
         	} else {
 				return Weixin::makeMsg('text', $event['Event']);

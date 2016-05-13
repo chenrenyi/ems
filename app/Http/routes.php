@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	Route::controller('classes', 'ClassesController');
 	Route::controller('score', 'ScoreController');
 	Route::controller('user', 'UserController');
+	Route::controller('timetable', 'TimetableController');
 });
 
 Route::controllers([
